@@ -9,16 +9,14 @@
             "request": "launch",
             "type": "chrome",
             "url": "http://localhost:8080",
-            "webRoot": "${workspaceFolder}",
-            "preLaunchTask": "serve:python"
+            "webRoot": "${workspaceFolder}"
         },
         {
             "type": "chrome",
             "request": "launch",
             "name": "针对 localhost 启动 Chrome",
             "url": "http://localhost:8080",
-            "webRoot": "${workspaceFolder}",
-            "preLaunchTask": "serve:python"
+            "webRoot": "${workspaceFolder}"
         }
     ]
 }
