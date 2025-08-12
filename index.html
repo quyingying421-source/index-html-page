@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>收到的点赞和推荐</title>
+  <style>
+    :root {
+      --imgImage: url('http://localhost:3845/assets/76e9e2a98cd3678dc1af4ccfafa6980248367701.png');
+      --imgImage1: url('http://localhost:3845/assets/24f5624f1a98fc5186b411013c419edd1c41a4ab.png');
+      --imgImage3: url('http://localhost:3845/assets/600f266b88c747ece4a2764986202a03598420ae.png');
+      --imgImage4: url('http://localhost:3845/assets/7e8b489d56941add346657fe5b12f5d6178a5ef2.png');
+      --imgImage5: url('http://localhost:3845/assets/93c3656552f5aef973b347a9bbbbae7cbc3363ae.png');
+      --imgImage6: url('http://localhost:3845/assets/9988be2eee0fe61339586a0980af867779162b83.png');
+      --imgSymbols: url('http://localhost:3845/assets/92a3060f0ac2a75498def6b34e6dcae1add43082.svg');
+      --imgBack: url('http://localhost:3845/assets/39d98217d75819c958a138722019405244e518d1.svg');
+      --imgMask: url('http://localhost:3845/assets/0777c16ddc86dca638c532e4411a61a1360d0cb7.svg');
+      --imgIcCmt: url('http://localhost:3845/assets/15a5e8df192d61588190ee2278443c66573ffe2f.svg');
+      --imgIcLike: url('http://localhost:3845/assets/52e6f0461c84ea207892d1d03fa5c70ccb3aadc6.svg');
+      --imgIcFollow: url('http://localhost:3845/assets/da55c7d71e4b1f002464e6097f6d83106b5f8892.svg');
+      --imgDivider: url('http://localhost:3845/assets/9baab87852f2ad370968cc12df8fc1f8fc3d0181.svg');
+      --imgIcReco: url('http://localhost:3845/assets/b08e512cef1929590a0955a25a0e59b77cd85676.svg');
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: #f5f6f8;
+      padding: 16px;
+      color: #333333;
+    }
+
+    .phone-frame {
+      margin: 0 auto;
+      width: 375px;
+      min-height: 896px;
+      background: #ffffff;
+      border-radius: 28px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .screen { position: relative; width: 375px; height: 896px; background: #ffffff; }
+
+    /* Status Bar */
+    .status-bar { position: absolute; left: 0; top: 0; width: 375px; height: 44px; }
+    .status-icons { position: absolute; right: 13.5px; top: 50%; width: 68px; height: 13px; transform: translateY(calc(-50% + 1.102px)); background-image: var(--imgSymbols); background-size: 68px 13px; background-repeat: no-repeat; }
+    .status-time { position: absolute; left: 29.5px; top: 50%; transform: translateY(calc(-50% + 1px)); font-size: 15px; font-weight: 600; letter-spacing: -0.165px; }
+
+    /* Top Bar */
+    .top-bar { position: absolute; left: 0; top: 44px; width: 375px; height: 44px; }
+    .btn-back { position: absolute; left: 20px; top: 10px; width: 24px; height: 24px; background-image: var(--imgBack); background-size: contain; background-repeat: no-repeat; }
+    .title { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-size: 16px; color: #273d51; font-weight: 500; }
+
+    /* Rows common */
+    .row { position: absolute; left: 0; width: 375px; height: 70px; }
+    .avatar { position: absolute; left: 15px; top: 0; width: 46px; height: 46px; border-radius: 50%; background-size: cover; background-position: center; }
+    .name { position: absolute; left: 77px; top: 0; font-size: 14px; font-weight: 500; }
+    .desc { position: absolute; left: 77px; top: 26px; font-size: 13px; color: #333; }
+    .desc .time { font-size: 13px; }
+
+    .right-mask {
+      position: absolute; left: 314px; top: 0; width: 86px; height: 48px;
+    }
+    .right-mask .masked-img {
+      position: absolute; left: 28px; top: 0; width: 46px; height: 46px;
+      background-repeat: no-repeat; background-size: cover; background-position: center;
+      -webkit-mask-image: var(--imgMask);
+      mask-image: var(--imgMask);
+      -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+      -webkit-mask-size: 46px 46px; mask-size: 46px 46px;
+      -webkit-mask-position: 0 0; mask-position: 0 0;
+      border-radius: 0; /* masked */
+    }
+
+    .mini-avatars .mini { position: absolute; width: 30px; height: 30px; background-size: cover; background-position: center; border-radius: 50%; }
+
+    .ic { position: absolute; left: 45px; top: 26px; width: 20px; height: 20px; background-size: contain; background-repeat: no-repeat; }
+
+    .divider { position: absolute; left: 50%; top: 847px; width: 344px; height: 1px; transform: translateX(-50%); background-image: var(--imgDivider); background-repeat: no-repeat; background-size: 344px 1px; }
+  </style>
+</head>
+<body>
+  <div class="phone-frame">
+    <div class="screen" aria-label="点赞、推荐">
+      <!-- Status Bar -->
+      <div class="status-bar">
+        <div class="status-icons" aria-hidden="true"></div>
+        <div class="status-time">9:41</div>
+      </div>
+
+      <!-- Top Bar -->
+      <div class="top-bar" role="banner">
+        <div class="btn-back" aria-label="返回"></div>
+        <div class="title">收到的点赞和推荐</div>
+      </div>
+
+      <!-- Row @108 -->
+      <div class="row" style="top:108px; height:70px;">
+        <div class="avatar" style="top:0; background-image: var(--imgImage);"></div>
+        <div class="name" style="top:0;">你好，喜洛</div>
+        <div class="desc" style="top:26px;">推荐了你的作品&nbsp;&nbsp;<span class="time">13:23</span></div>
+        <div class="ic" style="top:26px; background-image: var(--imgIcReco);"></div>
+        <div class="right-mask" style="top:0;">
+          <div class="masked-img" style="background-image: var(--imgImage1);"></div>
+        </div>
+      </div>
+
+      <!-- Row @178 -->
+      <div class="row" style="top:178px;">
+        <div class="avatar" style="top:0; background-image: var(--imgImage4);"></div>
+        <div class="name">DKZ4G-01013</div>
+        <div class="desc">赞了你的评论&nbsp;&nbsp;<span class="time">06-17</span></div>
+        <div class="ic" style="background-image: var(--imgIcLike);"></div>
+        <div class="right-mask" style="top:-12px;">
+          <div class="masked-img" style="background-image: var(--imgImage5);"></div>
+        </div>
+      </div>
+
+      <!-- Row @248 (group likes) -->
+      <div class="row" style="top:248px; height:70px;">
+        <div class="mini-avatars">
+          <div class="mini" style="left:15px; top:16px; background-image: var(--imgImage3);"></div>
+          <div class="mini" style="left:29px; top:0px; background-image: var(--imgImage3);"></div>
+        </div>
+        <div class="name">乔森</div>
+        <div class="desc">等5人赞了你的笔记&nbsp;&nbsp;<span class="time">06-17</span></div>
+        <div class="ic" style="background-image: var(--imgIcLike);"></div>
+        <div class="right-mask">
+          <div class="masked-img" style="background-image: var(--imgImage1);"></div>
+        </div>
+      </div>
+
+      <!-- Row @318 -->
+      <div class="row" style="top:318px;">
+        <div class="avatar" style="top:0; background-image: var(--imgImage6);"></div>
+        <div class="name">DKZ4G-01013</div>
+        <div class="desc">赞了你的评论&nbsp;&nbsp;<span class="time">06-17</span></div>
+        <div class="ic" style="background-image: var(--imgIcLike);"></div>
+        <div class="right-mask" style="top:-12px;">
+          <div class="masked-img" style="background-image: var(--imgImage5);"></div>
+        </div>
+      </div>
+
+      <!-- Row @388 (follow) -->
+      <div class="row" style="top:388px;">
+        <div class="avatar" style="top:0; background-image: var(--imgImage6);"></div>
+        <div class="name">DKZ4G-01013</div>
+        <div class="desc">张三关注了你&nbsp;&nbsp;<span class="time">06-17</span></div>
+        <div class="ic" style="background-image: var(--imgIcFollow);"></div>
+        <div class="right-mask" style="top:-12px;">
+          <div class="masked-img" style="background-image: var(--imgImage5);"></div>
+        </div>
+      </div>
+
+      <!-- Row @458 -->
+      <div class="row" style="top:458px;">
+        <div class="avatar" style="top:0; background-image: var(--imgImage4);"></div>
+        <div class="name">DKZ4G-01013</div>
+        <div class="desc">赞了你的评论&nbsp;&nbsp;<span class="time">06-17</span></div>
+        <div class="ic" style="background-image: var(--imgIcLike);"></div>
+        <div class="right-mask" style="top:-12px;">
+          <div class="masked-img" style="background-image: var(--imgImage5);"></div>
+        </div>
+      </div>
+
+      <!-- Row @528 (follow) -->
+      <div class="row" style="top:528px;">
+        <div class="avatar" style="top:0; background-image: var(--imgImage6);"></div>
+        <div class="name">DKZ4G-01013</div>
+        <div class="desc">关注了你&nbsp;&nbsp;<span class="time">06-17</span></div>
+        <div class="ic" style="background-image: var(--imgIcFollow);"></div>
+      </div>
+
+      <!-- Row @598 (comment) -->
+      <div class="row" style="top:598px;">
+        <div class="avatar" style="top:0; background-image: var(--imgImage);"></div>
+        <div class="name">你好，喜洛</div>
+        <div class="desc">评论了你的笔记&nbsp;&nbsp;<span class="time">13:23</span></div>
+        <div class="ic" style="background-image: var(--imgIcCmt);"></div>
+        <div class="right-mask">
+          <div class="masked-img" style="background-image: var(--imgImage1);"></div>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="divider" aria-hidden="true"></div>
+    </div>
+  </div>
+</body>
+</html> 
