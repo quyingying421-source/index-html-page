@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>城市轨道交通协会 - Figma 1782-8568</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --primary: #0ea5e9;
+      --divider: #e5e7eb;
+      --card: #f8fafc;
+    }
+    body { background: #f1f5f9; color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; padding: 16px; }
+    .phone { width: 375px; min-height: 812px; background: var(--bg); margin: 0 auto; border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); position: relative; overflow: hidden; }
+
+    .status { height: 44px; display: flex; align-items: center; justify-content: center; position: relative; }
+    .status .time { position: absolute; left: 16px; font-weight: 600; font-size: 15px; }
+
+    .topbar { height: 44px; display: flex; align-items: center; justify-content: center; position: relative; border-bottom: 1px solid var(--divider); }
+    .topbar .back { position: absolute; left: 16px; width: 24px; height: 24px; border-radius: 12px; background: var(--card); }
+    .topbar .title { font-size: 16px; font-weight: 600; color: #273d51; }
+
+    .hero { height: 160px; margin: 12px 16px 0; border-radius: 12px; background: linear-gradient(135deg, #55c0ff 0%, #0ea5e9 100%); }
+
+    .tabs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 12px 16px 0; }
+    .tab { height: 44px; border-radius: 10px; background: var(--card); display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 14px; }
+
+    .section { padding: 16px; }
+    .section-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+
+    .card { display: grid; grid-template-columns: 1fr 96px; gap: 12px; padding: 12px; border-radius: 12px; background: var(--card); }
+    .card + .card { margin-top: 10px; }
+    .card .thumb { width: 96px; height: 72px; border-radius: 8px; background: #dbeafe; }
+    .card .title { font-size: 15px; font-weight: 600; line-height: 1.4; margin-bottom: 6px; }
+    .card .meta { font-size: 12px; color: var(--muted); display: flex; gap: 12px; align-items: center; }
+
+    .list { margin: 8px 16px 0; border-top: 1px solid var(--divider); }
+    .item { display: grid; grid-template-columns: 40px 1fr auto; gap: 12px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--divider); }
+    .item .avatar { width: 40px; height: 40px; border-radius: 20px; background: #e2e8f0; }
+    .item .info { display: grid; gap: 2px; }
+    .item .info .name { font-size: 14px; font-weight: 600; }
+    .item .info .sub { font-size: 12px; color: var(--muted); }
+    .item .cta { width: 72px; height: 30px; border-radius: 8px; background: #e0f2fe; color: #0369a1; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; }
+
+    .footer { height: 56px; position: sticky; bottom: 0; background: var(--bg); border-top: 1px solid var(--divider); display: grid; grid-template-columns: repeat(4, 1fr); }
+    .footer .fitem { display: grid; place-items: center; font-size: 11px; color: var(--muted); }
+    .footer .dot { width: 20px; height: 20px; border-radius: 10px; background: var(--card); margin-bottom: 4px; }
+  </style>
+</head>
+<body>
+  <div class="phone">
+    <div class="status"><div class="time">9:41</div></div>
+    <div class="topbar"><div class="back"></div><div class="title">城市轨道交通协会</div></div>
+
+    <div class="hero"></div>
+
+    <div class="tabs">
+      <div class="tab">资讯</div>
+      <div class="tab">通知</div>
+      <div class="tab">会议</div>
+      <div class="tab">关于</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">最新消息</div>
+      <div class="card">
+        <div>
+          <div class="title">轨道交通行业年度发展报告发布</div>
+          <div class="meta"><span>20分钟前</span><span>阅读 1,203</span></div>
+        </div>
+        <div class="thumb"></div>
+      </div>
+      <div class="card">
+        <div>
+          <div class="title">协会召开技术标准工作会议</div>
+          <div class="meta"><span>1小时前</span><span>阅读 842</span></div>
+        </div>
+        <div class="thumb"></div>
+      </div>
+    </div>
+
+    <div class="list">
+      <div class="item">
+        <div class="avatar"></div>
+        <div class="info">
+          <div class="name">张三</div>
+          <div class="sub">新成员入会</div>
+        </div>
+        <div class="cta">查看</div>
+      </div>
+      <div class="item">
+        <div class="avatar"></div>
+        <div class="info">
+          <div class="name">李四</div>
+          <div class="sub">会议报名成功</div>
+        </div>
+        <div class="cta">详情</div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="fitem"><div class="dot"></div><div>首页</div></div>
+      <div class="fitem"><div class="dot"></div><div>资讯</div></div>
+      <div class="fitem"><div class="dot"></div><div>会议</div></div>
+      <div class="fitem"><div class="dot"></div><div>我的</div></div>
+    </div>
+  </div>
+</body>
+</html>
